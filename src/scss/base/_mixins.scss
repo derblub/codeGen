@@ -1,0 +1,120 @@
+@mixin screen-small {
+	@media only screen and (min-width: $screen-small) {
+		@content;
+	}
+}
+
+@mixin screen-medium {
+	@media only screen and (min-width: $screen-med) {
+		@content;
+	}
+}
+
+@mixin screen-large {
+	@media only screen and (min-width: $screen-large) {
+		@content;
+	}
+}
+
+@mixin screen-xlarge {
+	@media only screen and (min-width: $screen-xlarge) {
+		@content;
+	}
+}
+
+/*
+	Font-size REM + Callback PX
+	Usage :
+	 @include font-size(value);
+*/
+
+@function calculateRem($size) {
+	@if $size != 0 {
+		$remSize: $size / 16px;
+		@return #{$remSize}rem;
+	}@else {
+		@return 0;
+	}
+}
+
+@mixin font-size($size) {
+	font-size: $size;
+	font-size: calculateRem($size);
+}
+
+/*
+	Border radius mixins (4 corners)
+	Usage :
+	@include border-radius(value)
+*/
+
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	border-radius: $radius;
+	-webkit-background-clip: padding-box;
+	-moz-background-clip:    padding;
+	background-clip:         padding-box;
+}
+
+/*
+	Opacity mixins (I8- Compatible)
+	Usage :
+	@include opacity(value);
+*/
+
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	$opacity-ie: $opacity * 100;
+	filter: alpha(opacity=$opacity-ie);
+}
+
+/*
+	Center block
+	Usage :
+	@include center-block;
+*/
+
+@mixin center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/*
+	Text-truncate
+	Usage :
+	@include texte-truncate
+*/
+
+@mixin text-truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-wrap: break-word;
+}
+
+
+
+/*
+	Translate mixin
+	@include translate(x, y)
+*/
+
+@mixin translate($x, $y){
+	@if($x != null){
+		-webkit-transform: translate($x, $y);
+		-moz-transform   : translate($x, $y);
+		-o-transform     : translate($x, $y);
+		-ms-transform    : translate($x, $y);
+		transform        : translate($x, $y);
+	}
+}
+
+@mixin transform($transforms) {
+	   -moz-transform: $transforms;
+	     -o-transform: $transforms;
+	    -ms-transform: $transforms;
+	-webkit-transform: $transforms;
+          transform: $transforms;
+}
