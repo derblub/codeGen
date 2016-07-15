@@ -10,4 +10,8 @@
         @include font-size(24px);
         text-transform:uppercase;
     }
+    canvas{
+        width: 300px;
+        height: 300px;
+    }
 }
