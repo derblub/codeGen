@@ -24,7 +24,7 @@ export class Canvas{
         this.canvasOrigin = (c.width) / 2;
 
         /* Color of the stroke */
-        this.ctx.strokeStyle = '#FFFFFF';
+        this.ctx.strokeStyle = '#0084ff';
         /* Cap of lines */
         this.ctx.lineCap = 'round';
 
@@ -69,6 +69,55 @@ export class Canvas{
             cont.ctx.closePath();
             cont.ctx.clip();
             cont.ctx.drawImage(thumbImg, cont.canvasOrigin - sizeImg, cont.canvasOrigin - sizeImg, sizeImg * 2, sizeImg * 2);
+            cont.ctx.restore();
         };
+    }
+    createOrientationHelpers(){
+        this.createBullsEyes();
+        this.createFbIcon();
+    }
+    createFbIcon(){
+        var icon = document.createElement('img');
+        var cont = this;
+        var size = this.canvasOrigin / 10;
+        icon.src = 'img/facebook-messenger.svg';
+        icon.onload = function() {
+            cont.ctx.save();
+            cont.ctx.beginPath();
+            cont.ctx.arc(cont.canvasOrigin*1.35, cont.canvasOrigin*1.35, size+8, 0, Math.PI * 2);
+            cont.ctx.fillStyle="#ffffff";
+            cont.ctx.fill();
+            cont.ctx.closePath();
+            cont.ctx.clip();
+            cont.ctx.drawImage(icon, cont.canvasOrigin*1.35 - size, cont.canvasOrigin*1.35 - size, size * 2, size * 2);
+            cont.ctx.restore();
+        }
+
+    }
+    createBullsEyes(){
+        this.createCircleDot(this.canvasOrigin/3.45, this.canvasOrigin);
+        this.createCircleDot(this.canvasOrigin, this.canvasOrigin/3.45);
+        this.createCircleDot(this.canvasOrigin, this.canvasOrigin*1.715);
+        this.createCircleDot(this.canvasOrigin*1.715, this.canvasOrigin);
+    }
+    createCircleDot(pos_x, pos_y){
+        var size = this.canvasOrigin / 15;
+
+        this.ctx.beginPath();
+        this.ctx.arc(pos_x, pos_y, size+10, 0, Math.PI * 2);
+        this.ctx.fillStyle="#ffffff";
+        this.ctx.fill();
+
+        this.ctx.beginPath();
+        this.ctx.arc(pos_x, pos_y, size, 0, Math.PI * 2);
+        this.ctx.lineWidth = 10 * this.pixelRatio;
+        this.ctx.stroke();
+        this.ctx.fillStyle="#ffffff";
+        this.ctx.fill();
+
+        this.ctx.beginPath();
+        this.ctx.arc(pos_x, pos_y, size/3, 0, Math.PI * 2);
+        this.ctx.fillStyle="#0084ff";
+        this.ctx.fill();
     }
 }
