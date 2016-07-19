@@ -1,10 +1,16 @@
 'use strict';
 
+/* Import dependencies */
+
+/* Import custom JS */
 import {Canvas} from "./canvas";
 import {Helper} from "./helpers";
+import {Hash}   from "./hash";
+import {Circle} from "./circle";
 
 const canvas = new Canvas(300, "myCanvas");
 const helper = new Helper();
+const hash = new Hash();
 
 export class CodeGen{
     constructor(){
@@ -24,7 +30,7 @@ export class CodeGen{
         this .pixelRatio = helper.getDevicePixelRatio();
     }
     create(){
-
+        // console.log(hash.encrypt());
         canvas.createCircleBg();
 
         /* (x, y, radius, start, end) //// ctx.arc(50, 50, 50, 0*Math.PI ,1.5*Math.PI); */
@@ -49,5 +55,8 @@ export class CodeGen{
 
         canvas.createImageArc('https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-1/p320x320/13445251_10208356195196471_1781558187916504694_n.jpg?oh=4fbd5c7db4a91bd953829e4d060bd6d5&oe=57F7856B', 30);
         document.querySelector(".codeGen").appendChild(canvas.ctx.canvas);
+
+        var circle = new Circle(canvas.ctx.canvas);
+
     }
 }

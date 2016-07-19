@@ -45,7 +45,13 @@ export class Canvas{
     createCircleBg(){
         /* Create a circle behind the canvas */
         this.ctx.beginPath();
-        this.ctx.arc(this.canvasOrigin, this.canvasOrigin, this.canvasOrigin - (10 * this.pixelRatio), 0, Math.PI * 2, false);
+        this.ctx.arc(
+            this.canvasOrigin,
+            this.canvasOrigin,
+            this.canvasOrigin - (10 * this.pixelRatio),
+            0,
+            Math.PI * 2
+        );
         this.ctx.lineWidth = 10 * this.pixelRatio;
         this.ctx.stroke();
         this.ctx.fillStyle="#2D322E";

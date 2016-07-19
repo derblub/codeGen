@@ -2,7 +2,8 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    @include translate(-50%, -50%);
+    z-index: 100;
+    transform : translate(-50%, -50%);
     h1{
         color:white;
         text-align:center;
@@ -13,5 +14,7 @@
     canvas{
         width: 300px;
         height: 300px;
+        transition : transform .2s ease-in;
+        transform : perspective( 700px ) rotateX(0) rotateY(0);
     }
 }
